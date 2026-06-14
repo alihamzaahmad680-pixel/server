@@ -236,33 +236,16 @@ const connectToMongoDB = async () => {
 
 connectToMongoDB();
 
-// لائیو اور لوکل فرنٹ اینڈ لنکس
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://greencart-iota-one.vercel.app",
-];
-
 app.use(express.json());
 app.use(cookieParser());
 
-// اپڈیٹڈ CORS مڈل ویئر (طریقہ کار تبدیل کر دیا گیا ہے)
+// بالکل سادہ اور آفیشل CORS لاجک جو ورسیل پر 500 کا ایرر کبھی نہیں دے گا
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: "https://greencart-iota-one.vercel.app",
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   }),
 );
-
-// کلاؤڈ سرورز پر پری فلائٹ (Preflight) ریکوئسٹس کو پاس کرنے کے لیے لازمی ہے
-app.options("*", cors());
 
 app.get("/", (req, res) => {
   res.send("API is working");
