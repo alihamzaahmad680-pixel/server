@@ -1,16 +1,15 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 
-const connectDB = async () => {
-  try {
-    mongoose.connection.on("connected", () =>
-      console.log("dataBase Connected"),
-    );
-    mongoose.connect(`${process.env.MONGO_URL}/greencart`);
-   
-  } catch (error) {
-    console.error(error.message);
-  }
-};
+// const connectDB = async () => {
+//   try {
+//     mongoose.connection.on("connected", () =>
+//       console.log("dataBase Connected"),
+//     );
+//     mongoose.connect(`${process.env.MONGO_URL}/greencart`);
 
-export default connectDB;
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// };
 
+// export default connectDB;
