@@ -281,7 +281,7 @@ const app = express();
 
 connectCloudinary();
 
-// فکس: مونگو ڈی بی کنکشن کو پراسس کی حد کے اندر لانا
+
 const connectToMongoDB = async () => {
   if (mongoose.connection.readyState >= 1) return; // اگر پہلے سے کنیکٹڈ ہے تو دوبارہ نہ کرے
 
