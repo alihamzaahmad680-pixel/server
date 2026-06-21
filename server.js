@@ -260,69 +260,66 @@ app.use("/api/order", orderRouter);
 
 // Vercel requires default export
 export default app;
-import "dotenv/config";
-import express from "express";
-import cookieParser from "cookie-parser";
-import cors from "cors";
-import mongoose from "mongoose";
-import dns from "dns";
+// import "dotenv/config";
+// import express from "express";
+// import cookieParser from "cookie-parser";
+// import cors from "cors";
+// import mongoose from "mongoose";
+// import dns from "dns";
 
-import userRouter from "./routes/userRoute.js";
-import sellerRouter from "./routes/sellerRoute.js";
-import productRouter from "./routes/productRoute.js";
-import cartRouter from "./routes/cartRoute.js";
-import addressRouter from "./routes/addressRoute.js";
-import orderRouter from "./routes/orderRoute.js";
-import connectCloudinary from "./configs/cloudinary.js";
+// import userRouter from "./routes/userRoute.js";
+// import sellerRouter from "./routes/sellerRoute.js";
+// import productRouter from "./routes/productRoute.js";
+// import cartRouter from "./routes/cartRoute.js";
+// import addressRouter from "./routes/addressRoute.js";
+// import orderRouter from "./routes/orderRoute.js";
+// import connectCloudinary from "./configs/cloudinary.js";
 
-dns.setDefaultResultOrder("ipv4first");
+// dns.setDefaultResultOrder("ipv4first");
 
-const app = express();
+// const app = express();
 
-connectCloudinary();
+// connectCloudinary();
 
-const connectToMongoDB = async () => {
-  if (mongoose.connection.readyState >= 1) return; // اگر پہلے سے کنیکٹڈ ہے تو دوبارہ نہ کرے
+// const connectToMongoDB = async () => {
+//   if (mongoose.connection.readyState >= 1) return; // اگر پہلے سے کنیکٹڈ ہے تو دوبارہ نہ کرے
 
-  try {
-    await mongoose.connect(process.env.MONGO_URL, {
-      serverSelectionTimeoutMS: 10000, // 10 سیکنڈ کا انتظار تاکہ ٹائم آؤٹ نہ ہو
-    });
-    console.log("MongoDB connected");
-  } catch (err) {
-    console.log("MongoDB error:", err);
-  }
-};
+//   try {
+//     await mongoose.connect(process.env.MONGO_URL, {
+//       serverSelectionTimeoutMS: 10000, // 10 سیکنڈ کا انتظار تاکہ ٹائم آؤٹ نہ ہو
+//     });
+//     console.log("MongoDB connected");
+//   } catch (err) {
+//     console.log("MongoDB error:", err);
+//   }
+// };
 
-// ہر ریکوئسٹ سے پہلے کنکشن چیک کرے گا
-app.use(async (req, res, next) => {
-  await connectToMongoDB();
-  next();
-});
+// // ہر ریکوئسٹ سے پہلے کنکشن چیک کرے گا
+// app.use(async (req, res, next) => {
+//   await connectToMongoDB();
+//   next();
+// });
 
-app.use(express.json());
-app.use(cookieParser());
+// app.use(express.json());
+// app.use(cookieParser());
 
-// CORS سیٹنگ
-app.use(
-  cors({
-    origin: "https://greencart-iota-one.vercel.app",
-    credentials: true,
-  }),
-);
+// // CORS سیٹنگ
+// app.use(
+//   cors({
+//     origin: "https://greencart-iota-one.vercel.app",
+//     credentials: true,
+//   }),
+// );
 
-app.get("/", (req, res) => {
-  res.send("API is working");
-});
+// app.get("/", (req, res) => {
+//   res.send("API is working");
+// });
 
-app.use("/api/user", userRouter);
-app.use("/api/seller", sellerRouter);
-app.use("/api/product", productRouter);
-app.use("/api/cart", cartRouter);
-app.use("/api/address", addressRouter);
-app.use("/api/order", orderRouter);
+// app.use("/api/user", userRouter);
+// app.use("/api/seller", sellerRouter);
+// app.use("/api/product", productRouter);
+// app.use("/api/cart", cartRouter);
+// app.use("/api/address", addressRouter);
+// app.use("/api/order", orderRouter);
 
-export default app;
-
-
-
+// export default app;
